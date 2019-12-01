@@ -1,16 +1,18 @@
 package aocutils
 
 import (
-	"fmt"
 	"strings"
 
 	"github.com/Ullaakut/disgo"
+	"github.com/fatih/color"
 )
 
 type Grid struct {
 	g      map[Vector2D]rune
 	Width  int
 	Height int
+
+	Formats map[rune]func(string, ...interface{}) string
 }
 
 // NewGrid makes a new grid from a multiline grid string.
@@ -32,7 +34,7 @@ func NewGrid(s string) Grid {
 		}
 	}
 
-	return Grid{g, width, height}
+	return Grid{g, width, height, nil}
 }
 
 // Cell returns a cell with the give coordinates.
@@ -56,11 +58,27 @@ func (g Grid) CountChars(r rune) int {
 	return total
 }
 
+// Display prints the grid.
 func (g Grid) Display() {
 	for y := 0; y < g.Height; y++ {
 		disgo.Infoln()
 		for x := 0; x < g.Width; x++ {
-			disgo.Info(fmt.Sprintf("%c", g.Cell(x, y)))
+			g.PrintCell(x, y)
 		}
 	}
+}
+
+// PrintCell prints a cell using custom formatting if any is specified.
+func (g Grid) PrintCell(x, y int) {
+	cell := g.Cell(x, y)
+	format := color.WhiteString
+
+	if g.Formats != nil {
+		f, exists := g.Formats[cell]
+		if exists {
+			format = f
+		}
+	}
+
+	disgo.Info(format("%c", cell))
 }
