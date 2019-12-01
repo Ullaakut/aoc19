@@ -19,7 +19,7 @@ fmt:
 ## Test all solvers
 test:
 	@echo "${H}=== Running go test ===${X}"
-	@go test ./...
+	@go test -v ./...
 
 ## Run all solvers
 run:
