@@ -9,24 +9,26 @@ import (
 )
 
 func main() {
-	if err := solve("../input.txt"); err != nil {
-		disgo.Errorln(style.Failure(style.SymbolCross, " Unable to solve challenge:"), err)
+	disgo.StartStep("Reading input file")
+	content, err := ioutil.ReadFile("../input.txt")
+	if err != nil {
+		_ = disgo.FailStepf("unable to read file ../input.txt: %w", err)
 		os.Exit(1)
-
 	}
+	disgo.EndStep()
+
+	result := solve(string(content))
+
+	disgo.Infoln(style.Success(style.SymbolCheck, " <RESULT>:"), result)
 
 	os.Exit(0)
 }
 
-func solve(inputPath string) error {
-	disgo.StartStep("Reading input file")
-	_, err := ioutil.ReadFile(inputPath)
-	if err != nil {
-		return disgo.FailStepf("unable to read file %q: %w", inputPath, err)
-	}
-	disgo.EndStep()
+func solve(content string) int {
+	disgo.StartStep("Computing <THING>")
+	defer disgo.EndStep()
 
-	disgo.Infoln(style.Success(style.SymbolCheck, " Result:"), "implement me")
+	var result int
 
-	return nil
+	return result
 }
