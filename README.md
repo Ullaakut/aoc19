@@ -56,13 +56,13 @@ Day | Completed | Project | Challenge | Language | Tests
 ### Part 1
 
 <p align="center">
-    <img src="img/0101.png">
-    <img src="img/0101_test.png">
+    <img width="65%" src="img/0101.png">
+    <img width="65%" src="img/0101_test.png">
 </p>
 
 ### Part 2
 
 <p align="center">
-    <img src="img/0102.png">
-    <img src="img/0102_test.png">
+    <img width="65%" src="img/0102.png">
+    <img width="65%" src="img/0102_test.png">
 </p>
