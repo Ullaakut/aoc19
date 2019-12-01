@@ -25,7 +25,7 @@ Here is an example of how it looks (the output is normally not cut, but puzzle d
 
 Day | Completed | Project | Challenge | Language | Tests
 ----|--------------|---------|-------|---------|------
-01 | :soon: | [day01](day01) | [Advent of Code 2019 - Day 01](https://adventofcode.com/2019/day/1)  | Go | :soon:
+01 | :white_check_mark: | [day01](day01) | [Advent of Code 2019 - Day 01](https://adventofcode.com/2019/day/1)  | Go | :white_check_mark:
 02 | :soon: | [day02](day02) | [Advent of Code 2019 - Day 02](https://adventofcode.com/2019/day/2)  | Go | :soon:
 03 | :soon: | [day03](day03) | [Advent of Code 2019 - Day 03](https://adventofcode.com/2019/day/3)  | Go | :soon:
 04 | :soon: | [day04](day04) | [Advent of Code 2019 - Day 04](https://adventofcode.com/2019/day/4)  | Go | :soon:
@@ -51,18 +51,18 @@ Day | Completed | Project | Challenge | Language | Tests
 24 | :soon: | [day24](day24) | [Advent of Code 2019 - Day 24](https://adventofcode.com/2019/day/24) | Go | :soon:
 25 | :soon: | [day25](day25) | [Advent of Code 2019 - Day 25](https://adventofcode.com/2019/day/25) | Go | :soon:
 
-## Day X
+## Day 1
 
 ### Part 1
 
 <p align="center">
-    <img src="img/0x01.png">
-    <img src="img/0x01_test.png">
+    <img src="img/0101.png">
+    <img src="img/0101_test.png">
 </p>
 
 ### Part 2
 
 <p align="center">
-    <img src="img/0x02.png">
-    <img src="img/0x02_test.png">
+    <img src="img/0102.png">
+    <img src="img/0102_test.png">
 </p>
