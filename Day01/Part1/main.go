@@ -2,11 +2,10 @@ package main
 
 import (
 	"io/ioutil"
-	"math"
 	"os"
-	"strconv"
 	"strings"
 
+	"github.com/Ullaakut/aoc19/pkg/aocutils"
 	"github.com/Ullaakut/disgo"
 	"github.com/Ullaakut/disgo/style"
 )
@@ -27,20 +26,21 @@ func main() {
 	os.Exit(0)
 }
 
+func computeFuelRequirement(mass int) int {
+	return mass/3 - 2
+}
+
 func solve(content string) int {
 	disgo.StartStep("Computing initial weight requirement")
 	defer disgo.EndStep()
 
-	modules := strings.Split(content, "\n")
+	modules := strings.Split(strings.TrimSpace(content), "\n")
 
 	var fuelRequirement int
 	for _, module := range modules {
-		moduleWeight, _ := strconv.ParseFloat(module, 10)
-		if moduleWeight == 0 {
-			continue
-		}
+		moduleWeight := aocutils.Atoi(module)
 
-		moduleFuelRequirement := int(math.Floor(moduleWeight/3)) - 2
+		moduleFuelRequirement := computeFuelRequirement(moduleWeight)
 
 		fuelRequirement = fuelRequirement + moduleFuelRequirement
 		disgo.Infoln("Found module with weight", moduleWeight, "which needs", moduleFuelRequirement, "fuel")

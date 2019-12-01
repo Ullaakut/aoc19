@@ -2,12 +2,17 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 )
 
 func TestFuelRequirementComputation(t *testing.T) {
+	realInput, err := ioutil.ReadFile("../input.txt")
+	require.NoError(t, err)
+
 	tests := []struct {
 		input string
 		want  int
@@ -27,6 +32,10 @@ func TestFuelRequirementComputation(t *testing.T) {
 		{
 			input: "100756\n1969",
 			want:  50346 + 966,
+		},
+		{
+			input: string(realInput),
+			want:  5342292,
 		},
 	}
 
