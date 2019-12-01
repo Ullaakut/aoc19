@@ -1,9 +1,11 @@
 package aocutils
 
+// Vector2D represents a 2D set of ints.
 type Vector2D struct {
 	x, y int
 }
 
+// Add adds another vector to the vector.
 func (v Vector2D) Add(other Vector2D) Vector2D {
 	return Vector2D{
 		x: v.x + other.x,
@@ -11,6 +13,7 @@ func (v Vector2D) Add(other Vector2D) Vector2D {
 	}
 }
 
+// Sub subtracts another vector to the vector.
 func (v Vector2D) Sub(other Vector2D) Vector2D {
 	return Vector2D{
 		x: v.x - other.x,
@@ -18,6 +21,7 @@ func (v Vector2D) Sub(other Vector2D) Vector2D {
 	}
 }
 
+// Mul multiplies the vector with the values of another vector.
 func (v Vector2D) Mul(factor int) Vector2D {
 	return Vector2D{
 		x: factor * v.x,
@@ -25,18 +29,29 @@ func (v Vector2D) Mul(factor int) Vector2D {
 	}
 }
 
+// Length calculates the length of the vector.
+func (v Vector2D) Length() int {
+	return v.x + v.y
+}
+
+// LengthSquared calculates the square of the length of the vector.
 func (v Vector2D) LengthSquared() int {
 	return v.x*v.x + v.y*v.y
 }
 
+// ManhattanLength calculates the Manhattan length of the vector.
 func (v Vector2D) ManhattanLength() int {
 	return AbsInt(v.x) + AbsInt(v.y)
 }
 
+// DistanceSquared calculates the difference between the squared length
+// of this vector and another.
 func (v Vector2D) DistanceSquared(o Vector2D) int {
 	return v.Sub(o).LengthSquared()
 }
 
+// ManhattanDistance calculates the Manhattan distance between the vector
+// and another vector.
 func (v Vector2D) ManhattanDistance(o Vector2D) int {
 	return v.Sub(o).ManhattanLength()
 }
