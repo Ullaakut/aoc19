@@ -21,7 +21,7 @@ func main() {
 
 	result := solve(string(content))
 
-	disgo.Infoln(style.Success(style.SymbolCheck, " Position zero value:"), result)
+	disgo.Infoln(style.Success(style.SymbolCheck, " Noun and verb combination:"), result)
 
 	os.Exit(0)
 }
