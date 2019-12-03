@@ -24,3 +24,6 @@ solver
 
 # HTML files downloaded from adventofcode
 Day*/*.html
+
+# MacOS
+.DS_Store
