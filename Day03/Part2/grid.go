@@ -61,34 +61,3 @@ func (g Grid) PrintCell(x, y int) {
 
 	fmt.Print(format("%c", cell))
 }
-
-func (g Grid) FindClosest(originRune, otherRune rune) int {
-	var (
-		originPos aocutils.Vector2D
-		otherPos  []aocutils.Vector2D
-	)
-
-	for pos, cell := range g.g {
-		// This is the origin
-		if cell.r == originRune {
-			originPos = pos
-			continue
-		}
-
-		if cell.r == otherRune {
-			otherPos = append(otherPos, pos)
-		}
-	}
-
-	var closest int
-	for _, pos := range otherPos {
-		if closest == 0 {
-			closest = originPos.ManhattanDistance(pos)
-			continue
-		}
-
-		closest = aocutils.MinInt(closest, originPos.ManhattanDistance(pos))
-	}
-
-	return closest
-}

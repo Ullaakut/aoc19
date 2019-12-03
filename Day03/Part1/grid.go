@@ -62,6 +62,8 @@ func (g Grid) PrintCell(x, y int) {
 	fmt.Print(format("%c", cell))
 }
 
+// FindClosest finds the closest rune to the origin rune, and returns
+// the Manhattan distance between both.
 func (g Grid) FindClosest(originRune, otherRune rune) int {
 	var (
 		originPos aocutils.Vector2D
@@ -75,11 +77,14 @@ func (g Grid) FindClosest(originRune, otherRune rune) int {
 			continue
 		}
 
+		// List the positions of all of the runes that match.
 		if cell.r == otherRune {
 			otherPos = append(otherPos, pos)
 		}
 	}
 
+	// Go through the list of positions, and return the one with the smallest
+	// Manhattan distance to the origin rune.
 	var closest int
 	for _, pos := range otherPos {
 		if closest == 0 {
