@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io/ioutil"
 	"os"
 	"strings"
@@ -10,6 +11,11 @@ import (
 	"github.com/Ullaakut/disgo/style"
 	"github.com/fatih/color"
 )
+
+type Wire struct {
+	ID        int
+	Positions []aocutils.Vector2D
+}
 
 func main() {
 	disgo.StartStep("Reading input file")
@@ -42,7 +48,9 @@ func solve(content string) int {
 	grid.g[aocutils.NewVector2D(0, 0)] = Cell{-1, 'o'}
 
 	var xMax, xMin, yMax, yMin int
+	var wires []Wire
 	for wireID, wirePath := range strings.Split(content, "\n") {
+		var positions []aocutils.Vector2D
 		var circuitPosition aocutils.Vector2D
 		for _, pathPart := range strings.Split(wirePath, ",") {
 			direction, r := computeDirection(rune(pathPart[0]))
@@ -55,11 +63,13 @@ func solve(content string) int {
 
 			distance := aocutils.Atoi(pathPart[1:])
 
-			for i := 1; i < distance; i++ {
+			for i := 0; i < distance; i++ {
 				cellPosition := circuitPosition.Add(direction.Mul(i))
 				if cellPosition.IsUnset() {
 					continue
 				}
+
+				positions = append(positions, cellPosition)
 
 				// Set boundaries to be able to render the grid later on.
 				xMax, xMin, yMax, yMin = checkLimits(cellPosition, xMax, xMin, yMax, yMin)
@@ -76,9 +86,38 @@ func solve(content string) int {
 
 			circuitPosition = circuitPosition.Add(direction.Mul(distance))
 		}
+
+		wires = append(wires, Wire{
+			ID:        wireID,
+			Positions: positions,
+		})
 	}
 
-	return grid.FindClosest('o', 'X')
+	// grid.DisplaySquare(xMax, xMin, yMax, yMin)
+
+	return findClosestIntersection(wires, grid)
+}
+
+func findClosestIntersection(wires []Wire, grid Grid) int {
+	intersections := make(map[aocutils.Vector2D]int)
+	for _, wire := range wires {
+		for dist, pos := range wire.Positions {
+			if grid.Cell(pos) == 'X' {
+				intersections[pos] = intersections[pos] + dist + 1
+			}
+		}
+	}
+
+	var closestIntersection int
+	for _, distance := range intersections {
+		if closestIntersection == 0 {
+			closestIntersection = distance
+		}
+		fmt.Println("Intersection found with distance", distance)
+		closestIntersection = aocutils.MinInt(closestIntersection, distance)
+	}
+
+	return closestIntersection
 }
 
 func computeDirection(dirRune rune) (aocutils.Vector2D, rune) {
