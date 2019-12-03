@@ -1,9 +1,9 @@
 package aocutils
 
 import (
+	"fmt"
 	"strings"
 
-	"github.com/Ullaakut/disgo"
 	"github.com/fatih/color"
 )
 
@@ -37,11 +37,15 @@ func NewGrid(s string) Grid {
 	return Grid{g, width, height, nil}
 }
 
-// Cell returns a cell with the give coordinates.
-func (g Grid) Cell(x, y int) rune {
-	r, exists := g.g[Vector2D{x, y}]
+func (g Grid) Set(pos Vector2D, r rune) {
+	g.g[pos] = r
+}
+
+// Cell returns a cell with the given coordinates.
+func (g Grid) Cell(pos Vector2D) rune {
+	r, exists := g.g[pos]
 	if !exists {
-		return ' '
+		return '.'
 	}
 	return r
 }
@@ -61,16 +65,16 @@ func (g Grid) CountChars(r rune) int {
 // Display prints the grid.
 func (g Grid) Display() {
 	for y := 0; y < g.Height; y++ {
-		disgo.Infoln()
 		for x := 0; x < g.Width; x++ {
 			g.PrintCell(x, y)
 		}
+		fmt.Println()
 	}
 }
 
 // PrintCell prints a cell using custom formatting if any is specified.
 func (g Grid) PrintCell(x, y int) {
-	cell := g.Cell(x, y)
+	cell := g.Cell(Vector2D{x, y})
 	format := color.WhiteString
 
 	if g.Formats != nil {
@@ -80,5 +84,5 @@ func (g Grid) PrintCell(x, y int) {
 		}
 	}
 
-	disgo.Info(format("%c", cell))
+	fmt.Print(format("%c", cell))
 }

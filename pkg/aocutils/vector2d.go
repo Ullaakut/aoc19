@@ -5,6 +5,26 @@ type Vector2D struct {
 	x, y int
 }
 
+// NewVector2D creates a new vector.
+func NewVector2D(x, y int) Vector2D {
+	return Vector2D{x, y}
+}
+
+// IsUnset returns whether the vector is set.
+func (v Vector2D) IsUnset() bool {
+	return v.x == 0 && v.y == 0
+}
+
+// X returns the x value of the vector.
+func (v Vector2D) X() int {
+	return v.x
+}
+
+// Y returns the y value of the vector.
+func (v Vector2D) Y() int {
+	return v.y
+}
+
 // Add adds another vector to the vector.
 func (v Vector2D) Add(other Vector2D) Vector2D {
 	return Vector2D{
