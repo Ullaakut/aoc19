@@ -90,7 +90,7 @@ func solve(content string) int {
 
 	// Display the grid.
 	// It is recommended to disable it for large inputs.
-	grid.DisplaySquare(xMax, xMin, yMax, yMin)
+	// grid.DisplaySquare(xMax, xMin, yMax, yMin)
 
 	// Find the closest intersection to the origin point.
 	return grid.FindClosest('o', 'X')

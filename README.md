@@ -28,7 +28,7 @@ Day | Completed | Project | Challenge | Language | Tests
 01 | :white_check_mark: | [day01](day01) | [Advent of Code 2019 - Day 01](https://adventofcode.com/2019/day/1)  | Go | :white_check_mark:
 02 | :white_check_mark: | [day02](day02) | [Advent of Code 2019 - Day 02](https://adventofcode.com/2019/day/2)  | Go | :white_check_mark:
 03 | :white_check_mark: | [day03](day03) | [Advent of Code 2019 - Day 03](https://adventofcode.com/2019/day/3)  | Go | :white_check_mark:
-04 | :soon: | [day04](day04) | [Advent of Code 2019 - Day 04](https://adventofcode.com/2019/day/4)  | Go | :soon:
+04 | :white_check_mark: | [day04](day04) | [Advent of Code 2019 - Day 04](https://adventofcode.com/2019/day/4)  | Go | :white_check_mark:
 05 | :soon: | [day05](day05) | [Advent of Code 2019 - Day 05](https://adventofcode.com/2019/day/5)  | Go | :soon:
 06 | :soon: | [day06](day06) | [Advent of Code 2019 - Day 06](https://adventofcode.com/2019/day/6)  | Go | :soon:
 07 | :soon: | [day07](day07) | [Advent of Code 2019 - Day 07](https://adventofcode.com/2019/day/7)  | Go | :soon:
@@ -97,4 +97,20 @@ Day | Completed | Project | Challenge | Language | Tests
 <p align="center">
     <img width="65%" src="img/0302.png">
     <img width="65%" src="img/0302_test.png">
+</p>
+
+## Day 4
+
+### Part 1
+
+<p align="center">
+    <img width="65%" src="img/0401.png">
+    <img width="65%" src="img/0401_test.png">
+</p>
+
+### Part 2
+
+<p align="center">
+    <img width="65%" src="img/0402.png">
+    <img width="65%" src="img/0402_test.png">
 </p>
