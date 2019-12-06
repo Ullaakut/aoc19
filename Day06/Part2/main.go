@@ -3,6 +3,7 @@ package main
 import (
 	"io/ioutil"
 	"os"
+	"strings"
 
 	"github.com/Ullaakut/disgo"
 	"github.com/Ullaakut/disgo/style"
@@ -19,16 +20,59 @@ func main() {
 
 	result := solve(string(content))
 
-	disgo.Infoln(style.Success(style.SymbolCheck, " <RESULT>:"), result)
+	disgo.Infoln(style.Success(style.SymbolCheck, " Orbital transfers:"), result)
 
 	os.Exit(0)
 }
 
 func solve(content string) int {
-	disgo.StartStep("Computing <THING>")
+	disgo.StartStep("Computing minimum orbital transfers")
 	defer disgo.EndStep()
 
-	var result int
+	orbits := make(map[string]string)
+	for _, orbit := range strings.Split(strings.TrimSpace(content), "\n") {
+		bodies := strings.Split(orbit, ")")
 
-	return result
+		mainObject := bodies[0]
+		orbitingObject := bodies[1]
+		orbits[orbitingObject] = mainObject
+	}
+
+	// Loop through all of the bodies and store distance from begin
+	// position for each one of them.
+	distances := make(map[string]int)
+	orbiting, exists := orbits["YOU"]
+	for {
+		if exists != true {
+			break
+		}
+
+		// Store distance.
+		distances[orbiting] = len(distances)
+
+		// The value of 'orbiting' will go through
+		// all of the bodies that directly/indirectly orbit 'orbit'.
+		orbiting, exists = orbits[orbiting]
+	}
+
+	// Calculate total distance from YOU to SAN using the previously computed
+	// distances.
+	var totalDistance int
+	orbiting, exists = orbits["SAN"]
+	for {
+		if exists != true {
+			break
+		}
+
+		// If we know the distance of the orbiting body
+		// we can already calculate the total distance.
+		if _, exists := distances[orbiting]; exists {
+			return totalDistance + distances[orbiting]
+		}
+
+		totalDistance++
+		orbiting, exists = orbits[orbiting]
+	}
+
+	return -1
 }
