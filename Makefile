@@ -36,6 +36,8 @@ Day${DAY}:
 	@mkdir -p Day${DAY}/Part1 Day${DAY}/Part2
 	@cp templates/main.go Day${DAY}/Part1/main.go
 	@cp templates/main.go Day${DAY}/Part2/main.go
+	@cp templates/main_test.go Day${DAY}/Part1/main_test.go
+	@cp templates/main_test.go Day${DAY}/Part2/main_test.go
 
 Day${DAY}/input.txt:
 	@echo "${H}=== Downloading input for day ${SHORT_DAY} ===${X}"
