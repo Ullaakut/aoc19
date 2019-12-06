@@ -22,7 +22,7 @@ func main() {
 
 	result := solve(string(content), 5)
 
-	disgo.Infoln(style.Success(style.SymbolCheck, " Diagnostics string:"), result)
+	disgo.Infoln(style.Success(style.SymbolCheck, " Diagnostics string:"), aocutils.Atoi(result))
 
 	os.Exit(0)
 }
@@ -36,7 +36,6 @@ func computeOpcode(opcodes []int, input int) string {
 	var result string
 	var idx int
 	for {
-		fmt.Println(idx, opcodes[idx:idx+4])
 		var jump int
 		switch opcodes[idx] % 100 {
 		case 1: // adds x1 and x2 and writes to x3

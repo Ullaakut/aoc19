@@ -22,7 +22,7 @@ func main() {
 
 	result := solve(string(content), 1)
 
-	disgo.Infoln(style.Success(style.SymbolCheck, " Diagnostics string:"), result)
+	disgo.Infoln(style.Success(style.SymbolCheck, " Diagnostics string:"), aocutils.Atoi(result))
 
 	os.Exit(0)
 }
